@@ -1,0 +1,27 @@
+body {
+	background-color: #ff00ff
+}
+
+table {
+	background-color: #36F3D1;
+	border-color: red;
+}
+input:FOCUS {
+	border-color: red;
+}
+textarea:FOCUS {
+	color: yellow;
+	background-color: yellow;
+	border-color: red;
+}
+table td {
+	background: #ff8000;
+}
+img {
+	border-color: red;
+	border: 2;
+	color: red;
+}
+h2 {
+	background-color: green;
+}

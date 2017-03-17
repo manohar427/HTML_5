@@ -4,28 +4,61 @@
 <meta charset="ISO-8859-1">
 <title>My School Name</title>
 </head>
+<link rel="stylesheet" type="text/css" href="myStyles.css">
+<script type="text/javascript">
+function validateStudent(){
+	var fname =  document.stdRegist.fname.value;
+	var lname =  document.stdRegist.lname.value;
+	var email =  document.stdRegist.email.value;
+	if(fname.length<=0){
+		alert('Please provide First Name');
+		document.getElementById("fname").focus()
+		return;
+	}
+	
+	if(lname.length<=0){
+		alert('Please provide Last Name');
+		document.getElementById("lname").focus()
+		return ;
+	}
+	
+	//abcgmail.com
+	if(email.length<=0){
+		alert('Please provide Email address');
+		document.getElementById("email").focus()
+		return ;
+	}else{
+		var atIndex = email.indexOf('@');
+		var dotIndex = email.indexOf('.');
+		if(atIndex ==-1 || dotIndex == -1){
+			alert('Please provide Valid Email address');
+			document.getElementById("email").focus()
+		}
+	}
+}
+</script>
 <body>
+    
+    <form name='stdRegist'>
       <marquee bgcolor="red">Register today you will get 15% discount</marquee>
 
      <center> <image src="school.jpg" width="250px" height="200px"></image></center>
  <center><h2>My School Name</h2></center>
       
-      
-      
       <table align="center" border="1">
          <tr>
             <td>First Name :</td>
-            <td><input type="text"/></td>
+            <td><input type="text" name="fname" id="fname"/></td>
          </tr>
          
          <tr>
             <td>Last Name :</td>
-            <td><input type="text"/></td>
+            <td><input type="text" name='lname' id='lname'/></td>
          </tr>
          
          <tr>
             <td>Email :</td>
-            <td><input type="text"/></td>
+            <td><input type="text" name='email' id='email'/></td>
          </tr>
          
          <tr>
@@ -62,12 +95,13 @@
          </tr>
          
          <tr>
-           <td colspan="2" align="center"><input type="submit" value="Register"></td>
+           <td colspan="2" align="center">
+           <input type="button" value="Register" onclick="validateStudent()"></td>
          </tr>
          
          
       </table>
       
-      
+     </form> 
 </body>
 </html>
