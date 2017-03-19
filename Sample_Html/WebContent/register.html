@@ -6,10 +6,32 @@
 </head>
 <link rel="stylesheet" type="text/css" href="myStyles.css">
 <script type="text/javascript">
+function selectAllSkill(){
+	
+	var skillAllSelect = document.stdRegist.skills;
+	
+	if(skillAllSelect[2].checked){
+		for(var i=0;i<skillAllSelect.length;i++){
+			skillAllSelect[i].checked = true;
+		}
+	}else{
+		for(var i=0;i<skillAllSelect.length;i++){
+			skillAllSelect[i].checked = false;
+		}
+	}
+	
+}
+
+
 function validateStudent(){
 	var fname =  document.stdRegist.fname.value;
 	var lname =  document.stdRegist.lname.value;
 	var email =  document.stdRegist.email.value;
+	var gender = document.stdRegist.gender.value;
+	var skillsList = document.stdRegist.skills;
+	var university = document.stdRegist.university.value;
+	var address = document.stdRegist.address.value;
+	
 	if(fname.length<=0){
 		alert('Please provide First Name');
 		document.getElementById("fname").focus()
@@ -32,9 +54,48 @@ function validateStudent(){
 		var dotIndex = email.indexOf('.');
 		if(atIndex ==-1 || dotIndex == -1){
 			alert('Please provide Valid Email address');
-			document.getElementById("email").focus()
+			document.getElementById("email").focus();
+			return ;
 		}
 	}
+	
+	//Gender validation
+	if(gender.length<=0){
+		alert('Please Select gender');
+		document.getElementById("gender").focus()
+		return ;
+	}
+	//Skills validation
+	
+	var flag = true;
+	for(var i=0;i<skillsList.length;i++){
+		if(skillsList[i].checked){
+			flag = false;
+			break;
+		}
+	}
+	
+	if(flag){
+		alert("Please select atleast one skillset");
+		document.getElementById("skills")[0].focus();
+		return;
+	}
+	
+	//university Validation
+	
+	if(university == "pls"){
+		alert('Please Select University');
+		document.getElementById("university").focus()
+		return ;
+	}
+	//address validation
+	if(address.length == 0){
+		alert('Please provide address');
+		document.getElementById("address").focus()
+		return ;
+	}
+	
+	alert('Validation is success');
 }
 </script>
 <body>
@@ -64,14 +125,14 @@ function validateStudent(){
          <tr>
             <td>Gender :</td>
             <td>
-            <input type="radio" name="gender"/>Male  <input type="radio" name="gender"/>FeMale
+            <input type="radio" name="gender" id="gender" value='M'/>Male  <input type="radio" name="gender" id="gender" value="F"/>FeMale
             </td>
          </tr>
          
          <tr>
             <td>Skills :</td>
             <td>
-            <input type="checkbox" name="skills"/>C  <input type="checkbox" name="skills"/>C++ <input type="checkbox" name="skills"/>Select All
+            <input type="checkbox" name="skills" value='c'/>C  <input type="checkbox" name="skills" value='cpp'/>C++ <input type="checkbox" name="skills" value='all' onclick="selectAllSkill()"/>Select All
             </td>
          </tr>
          
@@ -79,10 +140,10 @@ function validateStudent(){
          <tr>
             <td>University :</td>
             <td>
-                 <select>
-                   <option>Pls Select</option>
-                   <option>University 1</option>
-                   <option>University 2</option>
+                 <select name="university" id='university'>
+                   <option value="pls">Pls Select</option>
+                   <option value="uni1">University 1</option>
+                   <option value="uni2">University 2</option>
                  </select>
             </td>
          </tr>
@@ -90,7 +151,7 @@ function validateStudent(){
           <tr>
             <td valign="top">Address :</td>
             <td>
-              <textarea name="address" rows="4"></textarea>
+              <textarea name="address" id ='address'rows="4"></textarea>
             </td>
          </tr>
          

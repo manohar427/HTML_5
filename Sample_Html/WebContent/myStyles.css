@@ -10,8 +10,7 @@ input:FOCUS {
 	border-color: red;
 }
 textarea:FOCUS {
-	color: yellow;
-	background-color: yellow;
+	color: red;
 	border-color: red;
 }
 table td {
