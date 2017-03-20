@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<script>
+function getSelecCountry(){
+	
+	var seleContry = document.getElementById("country").value;
+	console.log('seleContry:'+seleContry);
+	//400,401,403,404...500
+	//Ajax code
+	var xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange = function() {
+	    if (xhttp.readyState == 4 && xhttp.status == 200) {
+	      document.getElementById("provinceDiv").innerHTML = xhttp.responseText;
+	    }
+	    if(xhttp.status==500){
+	    	alert("Server is not responding");
+	    }
+	    
+	    if(xhttp.status==404){
+	    	alert("Server is not available");
+	    }
+	  };
+	  xhttp.open("GET", "http://localhost:5555/ServerApp/TestServlet?country="+seleContry, true);
+	  xhttp.send();
+	
+	
+}
+</script>
+<body>
+	<table>
+		<tr>
+			<td>Country</td>
+			<td><select onchange="getSelecCountry()" name="country" id='country'>
+					<option value="pls">Pls Select</option>
+					<option value="us">US</option>
+					<option value="uk">UK</option>
+					<option value="india">India</option>
+			</select></td>
+		</tr>
+		<tr>
+			<td>Province</td>
+			<td>
+				<div id='provinceDiv'>
+					<select>
+						<option>Pls Select</option>
+					</select>
+				</div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
