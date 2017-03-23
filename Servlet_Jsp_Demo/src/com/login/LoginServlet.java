@@ -25,8 +25,14 @@ public class LoginServlet extends HttpServlet {
 		String userName = request.getParameter("uname");
 		String password = request.getParameter("pwd");
 		
-		System.out.println("User Name:"+userName);;
-		System.out.println("Password:"+password);;
+		//Connect to DB
+		
+		System.out.println("User Name:"+userName);
+		System.out.println("Password:"+password);
+		
+		response.getOutputStream().println(userName.toUpperCase()+" Loggedin Successfully !");
+		System.out.println("Session ID:"+request.getSession().getId());
+		request.getSession().setMaxInactiveInterval(2);
 	}
 
 }
